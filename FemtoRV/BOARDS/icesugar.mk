@@ -4,6 +4,13 @@ NEXTPNR_ICESUGAR_OPT=--force --json $(PROJECTNAME).json --pcf BOARDS/icesugar.pc
 
 #######################################################################################################################
 
+# Instructions
+# in FemtoRV directory: make ICESUGAR (this will generate /FIRMWARE/config.mk)
+# Compile firmware into hex file: in FIRMWARE/EXAMPLES: make hello.hex (this will generate firmware.hex in /FIRMWARE)
+# back in FemtoRV: make ICESUGAR (run again this will now $readmemh("FIRMWARE/firmware.hex",RAM); in femtosoc.v and generate femtosoc.bin
+# Windows: copy femtosoc.bin to iCELink device (iceprog in WSL can't access USB devices on Windows host)
+
+
 ICESUGAR: ICESUGAR.firmware_config ICESUGAR.synth ICESUGAR.prog
 
 ICESUGAR.synth: FIRMWARE/firmware.hex 
